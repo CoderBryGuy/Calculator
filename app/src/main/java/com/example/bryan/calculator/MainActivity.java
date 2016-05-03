@@ -5,9 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
+    String tempValue = "";
+    String operation = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,5 +111,97 @@ public class MainActivity extends Activity {
                 output.append("9");
             }
         });
+
+        buttonPlus.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v)
+            {
+                TextView output = (TextView)findViewById(R.id.textView2);
+                tempValue = output.getText().toString();
+                output.setText("");
+                operation = "+";
+                Toast.makeText(MainActivity.this, "You entered: " + tempValue, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        buttonMinus.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+              TextView output = (TextView)findViewById(R.id.textView2);
+                tempValue = output.getText().toString();
+                output.setText("");
+                operation = "-";
+                Toast.makeText(MainActivity.this, "You entered: " + tempValue, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        buttonMultiply.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                TextView output = (TextView)findViewById(R.id.textView2);
+                tempValue = output.getText().toString();
+                output.setText("");
+                operation = "x";
+                Toast.makeText(MainActivity.this, "You entered: " + tempValue, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        buttonDivide.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                TextView output = (TextView)findViewById(R.id.textView2);
+                tempValue = output.getText().toString();
+                output.setText("");
+                operation = "/";
+                Toast.makeText(MainActivity.this, "You entered: " + tempValue, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        buttonEquals.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                switch(operation){
+                    case "+": add();
+                        break;
+                    case "-": subtract();
+                        break;
+                    case "x": multiply();
+                        break;
+                    case "/": divide();
+                        break;
+                    default: break;
+                }
+        }});
+    }
+
+    private void divide() {
+        TextView output = (TextView)findViewById(R.id.textView2);
+        String  tempValue2 = output.getText().toString();
+        double tmp1 = Double.parseDouble(tempValue);
+        double tmp2 = Double.parseDouble(tempValue2);
+        double result = tmp1 / tmp2;
+        output.setText(Double.toString(result));
+    }
+
+    private void multiply() {
+        TextView output = (TextView)findViewById(R.id.textView2);
+        String  tempValue2 = output.getText().toString();
+        double tmp1 = Double.parseDouble(tempValue);
+        double tmp2 = Double.parseDouble(tempValue2);
+        double result = tmp1 * tmp2;
+        output.setText(Double.toString(result));
+    }
+
+    private void subtract() {
+        TextView output = (TextView)findViewById(R.id.textView2);
+        String  tempValue2 = output.getText().toString();
+        double tmp1 = Double.parseDouble(tempValue);
+        double tmp2 = Double.parseDouble(tempValue2);
+        double result = tmp1 - tmp2;
+        output.setText(Double.toString(result));
+    }
+
+    private void add() {
+        TextView output = (TextView)findViewById(R.id.textView2);
+        String  tempValue2 = output.getText().toString();
+        double tmp1 = Double.parseDouble(tempValue);
+        double tmp2 = Double.parseDouble(tempValue2);
+        double result = tmp1 + tmp2;
+        output.setText(Double.toString(result));
     }
 }
